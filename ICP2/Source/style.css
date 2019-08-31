@@ -71,10 +71,24 @@ body {
     flex-wrap: wrap;
 }
 
-.main-content img {
+.main-content img1 {
     width: 272px;
     height: 92px;
 }
+.box{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 500px;
+    height: 200px;
+    align-content: space-between;
+    margin: 1px;
+    border: 10px;
+
+}
+
+
+
 
 #search-bar {
     position: relative;

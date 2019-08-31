@@ -11,8 +11,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -21,6 +21,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -34,17 +35,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Google.html">
+  <component name="RunManager" selected="JavaScript Debug.grid.html">
     <configuration name="Google.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ICP2/Google.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="grid.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ICP2/grid.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ICP2/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="new.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ICP2/new.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.grid.html" />
         <item itemvalue="JavaScript Debug.Google.html" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.new.html" />
       </list>
     </recent_temporary>
   </component>
@@ -59,7 +68,8 @@
       <option name="presentableId" value="Default" />
       <updated>1567027255604</updated>
       <workItem from="1567027258276" duration="1995000" />
-      <workItem from="1567223126735" duration="2069000" />
+      <workItem from="1567223126735" duration="3633000" />
+      <workItem from="1567264319101" duration="19268000" />
     </task>
     <servers />
   </component>
