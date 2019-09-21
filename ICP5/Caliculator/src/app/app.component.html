@@ -1,0 +1,38 @@
+<div class="container">
+      <div class="calc-body">
+        <div class="calc-screen">
+          <div class="calc-operation">{{ subText }} </div>
+          <div class="calc-typed">{{ mainText }}<span class="blink-me"></span></div>
+        </div>
+        <div class="calc-button-row">
+          <div class="keys" (click)="allClear()">AC</div>
+          <div class="keys" (click)="pressKey('9')">9</div>
+          <div class="keys" (click)="pressKey('8')">8</div>  
+          <div class="keys" (click)="pressKey('7')">7</div>
+        </div>
+
+        <div class="calc-button-row">
+          <div class="keys" (click)="pressKey('/')">/</div>  
+          <div class="keys" (click)="pressKey('6')">6</div>
+          <div class="keys" (click)="pressKey('5')">5</div>  
+          <div class="keys" (click)="pressKey('4')">4</div>
+        </div>
+        <div class="calc-button-row"> 
+          <div class="keys" (click)="pressKey('x')">x</div>
+          <div class="keys" (click)="pressKey('3')">3</div>  
+          <div class="keys" (click)="pressKey('2')">2</div>
+          <div class="keys" (click)="pressKey('1')">1</div>
+        </div>
+        <div class="calc-button-row">
+          <div class="keys" (click)="pressKey('-')">-</div>    
+          <div class="keys" (click)="pressKey('+')">+</div>
+          <div class="keys" (click)="pressKey('0')">0</div>  
+          <div class="equalkey" (click)="getAnswer()">=</div>
+        </div>
+
+            
+        
+      </div>
+    </div>
+    
+ 
