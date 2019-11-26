@@ -2,11 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <item android:title="Log Out" android:id="@+id/log_out" app:showAsAction="never">
+    <item android:title="Create Group" android:id="@+id/CreateGroup" app:showAsAction="never">
 
     </item>
+
     <item android:title="Settings" android:id="@+id/settings" app:showAsAction="never">
+
+    </item>
+
+    <item android:title="Log Out" android:id="@+id/log_out" app:showAsAction="never">
 
     </item>
 
