@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/set_user_name"
         android:inputType="phone"
-        android:hint="Name..."
+        android:hint="Mobile Number..."
         android:textAlignment="center"
         android:drawableStart="@drawable/edit_phnnum"
         android:textColor="@color/colorPrimaryDark"
