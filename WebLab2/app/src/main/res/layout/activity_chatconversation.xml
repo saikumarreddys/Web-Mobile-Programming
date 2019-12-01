@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ChatConversationActivity">
 
-        <include
-            android:id="@+id/single_chat_layout"
-            layout="@layout/app_bar_layout">
+    <include
+        android:id="@+id/single_chat_layout"
+        layout="@layout/app_bar_layout">
 
-        </include>
+    </include>
         <ScrollView
             android:id="@+id/Scroll_View"
             android:layout_width="match_parent"
@@ -61,5 +61,12 @@
                 android:src="@drawable/send_message"/>
 
         </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/buttonCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="650px"
+        app:srcCompat="@android:drawable/ic_menu_call" />
 
 </RelativeLayout>

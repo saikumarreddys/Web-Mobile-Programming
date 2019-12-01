@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.content.Intent;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
@@ -14,8 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -34,12 +41,14 @@ public class ChatConversationActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ImageButton imagebutton;
+    private ImageButton button;
     private EditText editText;
     private ScrollView scrollView;
     private TextView textView;
     private FirebaseAuth mAuth;
     private  String currentGroup,currentUserid,currentUserName,currentdate,currenttime;
-    private DatabaseReference dbRef,groupdbref,groupmessagekeyref;
+    private DatabaseReference dbRef,groupdbref,groupmessagekeyref, calldbref, callkeyref;
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +62,26 @@ public class ChatConversationActivity extends AppCompatActivity {
         currentUserid = mAuth.getCurrentUser().getUid();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Users");
         groupdbref = FirebaseDatabase.getInstance().getReference().child("ChatsList").child(currentGroup);
+        calldbref = FirebaseDatabase.getInstance().getReference().child("CallsList").child(currentGroup);
+
+        button = findViewById(R.id.buttonCall);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:9135498103"));
+                if (ContextCompat.checkSelfPermission(ChatConversationActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ChatConversationActivity.this,
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
+
+                }
+                startActivity(callIntent);
+                saveCalltoDB();
+
+            }
+        });
 
         InitializeFields();
 
@@ -145,6 +174,30 @@ public class ChatConversationActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveCalltoDB() {
+        String messageKEY = calldbref.push().getKey();
+
+        Calendar currentDate = Calendar.getInstance();
+        SimpleDateFormat currentDateFormat = new SimpleDateFormat("MMM dd,yyyy");
+        currentdate = currentDateFormat.format(currentDate.getTime());
+
+
+        Calendar currentTime = Calendar.getInstance();
+        SimpleDateFormat currentTimeFormat = new SimpleDateFormat("hh:mm a");
+        currenttime = currentTimeFormat.format(currentTime.getTime());
+
+        HashMap<String,Object>  grpmessagekey = new HashMap<>();
+        calldbref.updateChildren(grpmessagekey);
+        callkeyref = calldbref.child(messageKEY);
+
+        HashMap<String,Object> messageInfoMap = new HashMap<>();
+        messageInfoMap.put("name",currentUserName);
+        messageInfoMap.put("date",currentdate);
+        messageInfoMap.put("time",currenttime);
+
+        callkeyref.updateChildren(messageInfoMap);
     }
 
     private void saveMessagetoDb() {

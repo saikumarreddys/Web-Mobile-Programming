@@ -45,7 +45,7 @@ public class CallsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         callsview= inflater.inflate(R.layout.fragment_calls, container, false);
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Calls");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("CallsList");
         InitializeFields();
 
         DisplayGroups();
