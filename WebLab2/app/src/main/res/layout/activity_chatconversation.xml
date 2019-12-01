@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/default_wallpaper"
     tools:context=".ChatConversationActivity">
 
     <include
@@ -18,26 +19,68 @@
             android:layout_below="@id/single_chat_layout"
             android:layout_above="@id/linear_layout_2">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/balloon_outgoing_normal"
+                android:layout_marginLeft="30dp"
+                >
+
 
                 <TextView
-                    android:id="@+id/single_chat_text_display"
-                    android:layout_width="match_parent"
+                    android:id="@+id/chatTV"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/background_dark"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/timeTV"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/timeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_toLeftOf="@+id/messageStatusIV"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="5dp"
+                    />
+                <!--android:drawableRight="@drawable/message_got_read_receipt_from_target"-->
+
+                <ImageView
+                    android:id="@+id/messageStatusIV"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/message_got_read_receipt_from_target"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="5dp"
                     />
 
-            </LinearLayout>
+            </RelativeLayout>
+
+<!--            <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/single_chat_text_display"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="10dp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="@android:color/background_dark"-->
+<!--                android:layout_marginStart="2dp"-->
+<!--                android:layout_marginEnd="2dp"-->
+<!--                android:layout_marginBottom="50dp"-->
+<!--                />-->
+
+<!--        </LinearLayout>-->
         </ScrollView>
+
+
 
         <LinearLayout
             android:id="@+id/linear_layout_2"
@@ -50,23 +93,52 @@
 
             <EditText
                 android:id="@+id/input_g_message"
-                android:layout_width="360dp"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:hint="Enter a Message.."
-                />
+                android:hint="Enter a Message.." />
+
+            <ImageButton
+                android:id="@+id/attachID"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ib_attach" />
+
+            <ImageButton
+                android:id="@+id/cameraID"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ib_camera" />
+
+
             <ImageButton
                 android:id="@+id/send_m"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/send_message"/>
+                android:src="@drawable/send_message" />
 
         </LinearLayout>
 
-    <ImageButton
+
+    <ImageView
         android:id="@+id/buttonCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="650px"
-        app:srcCompat="@android:drawable/ic_menu_call" />
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/call" />
+
+    <ImageView
+        android:id="@+id/buttonVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_action_name" />
 
 </RelativeLayout>

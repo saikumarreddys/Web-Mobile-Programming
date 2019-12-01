@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.icu.text.Edits;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -71,7 +72,7 @@ public class ChatsFragment extends Fragment {
     }
 
     private void InitializeFields() {
-        chatlistView = (ListView) chatsview.findViewById(R.id.chat_list);
+        chatlistView = (ListView) chatsview.findViewById(R.id.chatsRecyclerView);
         listaddapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,list_of_chats);
         chatlistView.setAdapter(listaddapter);
     }

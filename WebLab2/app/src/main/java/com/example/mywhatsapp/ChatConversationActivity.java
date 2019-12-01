@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -41,10 +42,11 @@ public class ChatConversationActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ImageButton imagebutton;
-    private ImageButton button;
+    private ImageView button;
     private EditText editText;
     private ScrollView scrollView;
     private TextView textView;
+    private TextView timeView;
     private FirebaseAuth mAuth;
     private  String currentGroup,currentUserid,currentUserName,currentdate,currenttime;
     private DatabaseReference dbRef,groupdbref,groupmessagekeyref, calldbref, callkeyref;
@@ -146,7 +148,8 @@ public class ChatConversationActivity extends AppCompatActivity {
 
         imagebutton = (ImageButton) findViewById(R.id.send_m);
         editText = (EditText) findViewById(R.id.input_g_message);
-        textView = (TextView) findViewById(R.id.single_chat_text_display);
+        textView = (TextView) findViewById(R.id.chatTV);
+        timeView = (TextView) findViewById(R.id.timeTV);
         scrollView = (ScrollView) findViewById(R.id.Scroll_View);
     }
 
@@ -245,6 +248,7 @@ public class ChatConversationActivity extends AppCompatActivity {
             String chatTime = (String) ((DataSnapshot)iter.next()).getValue();
 
             textView.append(chatName + " :\n" + chatMessage + ":\n" + chatTime + "    "+ chatDate + "\n\n\n");
+            timeView.append(chatTime);
 
             scrollView.fullScroll(ScrollView.FOCUS_DOWN);
         }
