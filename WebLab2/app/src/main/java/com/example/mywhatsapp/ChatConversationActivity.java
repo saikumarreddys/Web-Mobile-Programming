@@ -11,6 +11,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.ImageView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -32,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -84,6 +88,15 @@ public class ChatConversationActivity extends AppCompatActivity {
 
             }
         });
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         InitializeFields();
 
@@ -239,16 +252,21 @@ public class ChatConversationActivity extends AppCompatActivity {
     private void DisplayMessages(DataSnapshot dataSnapshot) {
 
         Iterator iter = dataSnapshot.getChildren().iterator();
+        String currentUid = mAuth.getCurrentUser().getDisplayName();
+
+        int TYPE_INCOMING = 0;
 
         while(iter.hasNext())
         {
+            String chatName = (String) ((DataSnapshot)iter.next()).getValue();
+            if(currentUid.equalsIgnoreCase(chatName)) {
+                TYPE_INCOMING = 1;
+            }
             String chatDate = (String) ((DataSnapshot)iter.next()).getValue();
             String chatMessage = (String) ((DataSnapshot)iter.next()).getValue();
-            String chatName = (String) ((DataSnapshot)iter.next()).getValue();
             String chatTime = (String) ((DataSnapshot)iter.next()).getValue();
 
             textView.append(chatName + " :\n" + chatMessage + ":\n" + chatTime + "    "+ chatDate + "\n\n\n");
-            timeView.append(chatTime);
 
             scrollView.fullScroll(ScrollView.FOCUS_DOWN);
         }
