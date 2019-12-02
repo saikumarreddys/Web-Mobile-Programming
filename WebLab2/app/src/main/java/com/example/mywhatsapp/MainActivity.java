@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
          {
              CreateGroup();
          }
+         if(item.getItemId()== R.id.SearchContacts)
+         {
+             SendUserToSearchContactsActivity();
+         }
 
          return true;
     }
@@ -191,6 +195,15 @@ public class MainActivity extends AppCompatActivity {
         Intent settingsintent = new Intent(MainActivity.this,Settingsactivity.class);
         settingsintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(settingsintent);
+        finish();
+
+    }
+
+    protected  void SendUserToSearchContactsActivity()
+    {
+        Intent searchcontacts = new Intent(MainActivity.this,Searchcontact.class);
+
+        startActivity(searchcontacts);
         finish();
 
     }

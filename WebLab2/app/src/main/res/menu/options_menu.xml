@@ -6,6 +6,10 @@
 
     </item>
 
+    <item android:title="Search Contacts" android:id="@+id/SearchContacts" app:showAsAction="never">
+
+    </item>
+
     <item android:title="Settings" android:id="@+id/settings" app:showAsAction="never">
 
     </item>
