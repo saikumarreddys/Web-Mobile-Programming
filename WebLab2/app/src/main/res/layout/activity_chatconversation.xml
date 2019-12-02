@@ -22,9 +22,6 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/balloon_outgoing_normal"
-                android:layout_marginLeft="30dp"
                 >
 
 
@@ -32,8 +29,6 @@
                     android:id="@+id/chatTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@+id/timeTV"
                     android:textColor="@android:color/black" />
 
                 <TextView
@@ -41,21 +36,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:layout_toLeftOf="@+id/messageStatusIV"
                     android:layout_marginTop="8dp"
                     android:drawablePadding="5dp"
                     />
                 <!--android:drawableRight="@drawable/message_got_read_receipt_from_target"-->
 
-                <ImageView
-                    android:id="@+id/messageStatusIV"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/message_got_read_receipt_from_target"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="5dp"
-                    />
+<!--                <ImageView-->
+<!--                    android:id="@+id/messageStatusIV"-->
+<!--                    android:layout_width="15dp"-->
+<!--                    android:layout_height="15dp"-->
+<!--                    android:src="@drawable/message_got_read_receipt_from_target"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    />-->
 
             </RelativeLayout>
 
@@ -81,48 +75,62 @@
         </ScrollView>
 
 
+    <LinearLayout
+        android:id="@+id/linear_layout_2"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rect_round"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/linear_layout_2"
-            android:layout_width="match_parent"
+
+        <EditText
+            android:id="@+id/input_g_message"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true">
+            android:hint="Enter a Message.." />
+
+        <ImageButton
+            android:id="@+id/attachID"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/action_attach" />
+
+        <ImageButton
+            android:id="@+id/cameraID"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/action_camera" />
 
 
-            <EditText
-                android:id="@+id/input_g_message"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:hint="Enter a Message.." />
+        <ImageButton
+            android:id="@+id/send_m"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/action_send" />
 
-            <ImageButton
-                android:id="@+id/attachID"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ib_attach" />
+    </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/cameraID"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ib_camera" />
-
-
-            <ImageButton
-                android:id="@+id/send_m"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/send_message" />
-
-        </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/input_mic_white"
+        />
 
 
     <ImageView
