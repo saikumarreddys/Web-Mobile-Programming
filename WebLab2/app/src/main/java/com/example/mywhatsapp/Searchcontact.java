@@ -60,8 +60,8 @@ public class Searchcontact extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull SearchContactViewHolder holder, int position, @NonNull Contacts model) {
 
                 holder.username.setText(model.getName());
-                holder.userstatus.setText(model.status);
-                Picasso.get().load(model.getImage()).into(holder.profileImage);
+                holder.phnnum.setText(model.getPhnnum());
+
             }
 
             @NonNull
@@ -80,14 +80,17 @@ public class Searchcontact extends AppCompatActivity {
 
     public static  class SearchContactViewHolder extends RecyclerView.ViewHolder
     {
-        TextView username,userstatus;
+        TextView username,phnnum;
         CircleImageView profileImage;
         public  SearchContactViewHolder(@NotNull View itemView)
         {
             super(itemView);
             username = itemView.findViewById(R.id.User_profile_id);
-            userstatus = itemView.findViewById(R.id.user_profile_status);
+            phnnum = itemView.findViewById(R.id.user_phnnum);
+
             profileImage = itemView.findViewById(R.id.profile_image);
+
+
         }
     }
 }

@@ -2,7 +2,7 @@ package com.example.mywhatsapp;
 
 public class Contacts {
 
-    public String name, status, image;
+    public String name, phnnum, image;
 
     public Contacts()
     {
@@ -10,9 +10,9 @@ public class Contacts {
     }
 
 
-    public Contacts(String name, String status, String image) {
+    public Contacts(String name, String phnnum, String image) {
         this.name = name;
-        this.status = status;
+        this.phnnum = phnnum;
         this.image = image;
     }
 
@@ -24,16 +24,16 @@ public class Contacts {
         return image;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPhnnum() {
+        return phnnum;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPhnnum(String phnnum) {
+        this.phnnum = phnnum;
     }
 
     public void setName(String name) {
