@@ -73,7 +73,7 @@ public class ChatsFragment extends Fragment {
 
     private void InitializeFields() {
         chatlistView = (ListView) chatsview.findViewById(R.id.chatsRecyclerView);
-        listaddapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,list_of_chats);
+        listaddapter = new ArrayAdapter<String>(getContext(),R.layout.item_chat, R.id.nameTV ,list_of_chats);
         chatlistView.setAdapter(listaddapter);
     }
     private void DisplayGroups() {

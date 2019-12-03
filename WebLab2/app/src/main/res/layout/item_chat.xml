@@ -21,7 +21,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/userIV"
-        android:text="Neha"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -32,8 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/nameTV"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/userIV"
-        android:text="hello" />
+        android:layout_toRightOf="@id/userIV" />
 
     <TextView
         android:id="@+id/lastMessageTimeTV"
@@ -42,7 +40,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
-        android:text="5:30 PM"
         android:textColor="@color/chat_time_color"
         android:textSize="12sp" />
 
