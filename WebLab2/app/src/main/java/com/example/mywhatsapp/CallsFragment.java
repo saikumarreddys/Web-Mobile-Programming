@@ -66,7 +66,7 @@ public class CallsFragment extends Fragment {
 
     private void InitializeFields() {
         calllistView = (ListView) callsview.findViewById(R.id.calls_list);
-        listaddapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,list_of_calls);
+        listaddapter = new ArrayAdapter<String>(getContext(),R.layout.item_call,R.id.nameTV,list_of_calls);
         calllistView.setAdapter(listaddapter);
     }
     private void DisplayGroups() {

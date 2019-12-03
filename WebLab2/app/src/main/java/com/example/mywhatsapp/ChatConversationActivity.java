@@ -58,6 +58,7 @@ public class ChatConversationActivity extends AppCompatActivity {
     private DatabaseReference dbRef,groupdbref,groupmessagekeyref, calldbref, callkeyref;
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 100;
     private static final int PICKFILE_RESULT_CODE = 1;
+    private int audioCall = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +88,9 @@ public class ChatConversationActivity extends AppCompatActivity {
                             MY_PERMISSIONS_REQUEST_CALL_PHONE);
 
                 }
+                audioCall = 1;
                 startActivity(callIntent);
-                saveCalltoDB();
+                saveCalltoDB(audioCall);
 
             }
         });
@@ -217,7 +219,7 @@ public class ChatConversationActivity extends AppCompatActivity {
         });
     }
 
-    private void saveCalltoDB() {
+    private void saveCalltoDB(int callType) {
         String messageKEY = calldbref.push().getKey();
 
         Calendar currentDate = Calendar.getInstance();
@@ -237,6 +239,14 @@ public class ChatConversationActivity extends AppCompatActivity {
         messageInfoMap.put("name",currentUserName);
         messageInfoMap.put("date",currentdate);
         messageInfoMap.put("time",currenttime);
+        if(callType == 1)
+        {
+            messageInfoMap.put("callType", "audio");
+        }
+        else {
+            messageInfoMap.put("callType","video");
+        }
+
 
         callkeyref.updateChildren(messageInfoMap);
     }
