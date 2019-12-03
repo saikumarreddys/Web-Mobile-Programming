@@ -47,6 +47,8 @@ public class ChatConversationActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageButton imagebutton;
     private ImageView button;
+    private ImageView cameraButton;
+    private ImageView attachButton;
     private EditText editText;
     private ScrollView scrollView;
     private TextView textView;
@@ -55,6 +57,8 @@ public class ChatConversationActivity extends AppCompatActivity {
     private  String currentGroup,currentUserid,currentUserName,currentdate,currenttime;
     private DatabaseReference dbRef,groupdbref,groupmessagekeyref, calldbref, callkeyref;
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 100;
+    private static final int PICKFILE_RESULT_CODE = 1;
+    private int audioCall = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class ChatConversationActivity extends AppCompatActivity {
 
         button = findViewById(R.id.buttonCall);
 
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -83,8 +88,30 @@ public class ChatConversationActivity extends AppCompatActivity {
                             MY_PERMISSIONS_REQUEST_CALL_PHONE);
 
                 }
+                audioCall = 1;
                 startActivity(callIntent);
-                saveCalltoDB();
+                saveCalltoDB(audioCall);
+
+            }
+        });
+
+        cameraButton = findViewById(R.id.cameraID);
+
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(cameraIntent);
+
+            }
+        });
+
+        attachButton = findViewById(R.id.attachID);
+
+        attachButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent attachIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                attachIntent.setType("file/*");
+                startActivity(attachIntent);
 
             }
         });
@@ -192,7 +219,7 @@ public class ChatConversationActivity extends AppCompatActivity {
         });
     }
 
-    private void saveCalltoDB() {
+    private void saveCalltoDB(int callType) {
         String messageKEY = calldbref.push().getKey();
 
         Calendar currentDate = Calendar.getInstance();
@@ -212,6 +239,14 @@ public class ChatConversationActivity extends AppCompatActivity {
         messageInfoMap.put("name",currentUserName);
         messageInfoMap.put("date",currentdate);
         messageInfoMap.put("time",currenttime);
+        if(callType == 1)
+        {
+            messageInfoMap.put("callType", "audio");
+        }
+        else {
+            messageInfoMap.put("callType","video");
+        }
+
 
         callkeyref.updateChildren(messageInfoMap);
     }
