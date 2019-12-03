@@ -116,7 +116,8 @@ public class Settingsactivity extends AppCompatActivity {
                         {
                             Toast.makeText(Settingsactivity.this, "Profile Image Uploaded Successfully",Toast.LENGTH_SHORT);
 
-                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
+                            final String downloadUrl = task.getResult().getStorage().getDownloadUrl().toString();
+
 
                             dbRef.child("Users").child(currentUserID).child("image")
                                     .setValue(downloadUrl)
