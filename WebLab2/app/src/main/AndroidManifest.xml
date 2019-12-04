@@ -17,10 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Searchcontact" android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".ChatConversationActivity" />
         <activity android:name=".PhoneLoginActivity" />
         <activity android:name=".GroupchatActivity" />
-        <activity android:name=".Settingsactivity" android:parentActivityName=".MainActivity" />
+        <activity android:name=".Settingsactivity" android:parentActivityName="com.example.mywhatsapp.MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".loginActivity" />
         <activity android:name=".MainActivity">

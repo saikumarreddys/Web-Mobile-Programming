@@ -69,7 +69,7 @@ public class GroupchatActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         groupdbref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -111,7 +111,7 @@ public class GroupchatActivity extends AppCompatActivity {
 
 
 
-    private void InitializeFields() {
+    public void InitializeFields() {
 
         toolbar= (Toolbar) findViewById(R.id.group_chat_layout);
         setSupportActionBar(toolbar);
@@ -124,7 +124,7 @@ public class GroupchatActivity extends AppCompatActivity {
     }
 
 
-    private void GetuserInfo() {
+    public void GetuserInfo() {
 
         dbRef.child(currentUserid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -148,7 +148,7 @@ public class GroupchatActivity extends AppCompatActivity {
             }
         });
     }
-    private void saveMessagetoDb() {
+    public void saveMessagetoDb() {
         String message = editText.getText().toString();
         String messageKEY = groupdbref.push().getKey();
 
@@ -181,7 +181,7 @@ public class GroupchatActivity extends AppCompatActivity {
         }
     }
 
-    private void DisplayMessages(DataSnapshot dataSnapshot) {
+    public void DisplayMessages(DataSnapshot dataSnapshot) {
 
         Iterator iter = dataSnapshot.getChildren().iterator();
 

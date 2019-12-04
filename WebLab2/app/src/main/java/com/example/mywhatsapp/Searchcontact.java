@@ -2,11 +2,13 @@ package com.example.mywhatsapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -101,5 +103,11 @@ public class Searchcontact extends AppCompatActivity {
 
 
         }
+    }
+
+    public void onBackPressed() {
+        Intent intent = NavUtils.getParentActivityIntent(Searchcontact.this);
+        startActivity(intent);
+        finish();
     }
 }

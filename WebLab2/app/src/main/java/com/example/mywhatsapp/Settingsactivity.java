@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -255,6 +256,11 @@ public class Settingsactivity extends AppCompatActivity {
         Intent mainintent = new Intent(Settingsactivity.this, MainActivity.class);
         mainintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainintent);
+        finish();
+    }
+    public void onBackPressed() {
+        Intent intent = NavUtils.getParentActivityIntent(Settingsactivity.this);
+        startActivity(intent);
         finish();
     }
 }

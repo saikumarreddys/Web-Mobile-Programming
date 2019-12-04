@@ -50,15 +50,17 @@
 
         <EditText
             android:id="@+id/input_g_message"
-            android:layout_width="360dp"
+            android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:hint="Enter a Message.."
             />
         <ImageButton
             android:id="@+id/send_m"
             android:layout_width="50dp"
+
             android:layout_height="wrap_content"
-            android:src="@drawable/send_message"/>
+            android:src="@drawable/send_message"
+            />
 
     </LinearLayout>
 </RelativeLayout>
