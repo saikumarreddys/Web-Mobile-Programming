@@ -3,6 +3,7 @@ package com.example.mywhatsapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +47,7 @@ public class Settingsactivity extends AppCompatActivity {
     private static  final int GalleryPick =1;
     private StorageReference UserProfileImagesRef;
     private ProgressDialog loadingbar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,12 @@ public class Settingsactivity extends AppCompatActivity {
                 startActivityForResult(galleryintent,GalleryPick);
             }
         });
+
+        toolbar = (Toolbar) findViewById(R.id.Settings_back);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Settings");
     }
 
 
@@ -107,46 +117,44 @@ public class Settingsactivity extends AppCompatActivity {
                 loadingbar.setCanceledOnTouchOutside(true);
                 loadingbar.show();
                 Uri resultUri = result.getUri();
-                StorageReference filePath = UserProfileImagesRef.child(currentUserID + ".jpg");
-                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                final StorageReference filePath = UserProfileImagesRef.child(currentUserID + ".jpg");
+
+                filePath.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+                        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
 
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(Settingsactivity.this, "Profile Image Uploaded Successfully",Toast.LENGTH_SHORT);
+                                Uri downloaduri = uri;
+                               final String downloadUriString = downloaduri.toString();
 
-                            final String downloadUrl = task.getResult().getStorage().getDownloadUrl().toString();
+                                dbRef.child("Users").child(currentUserID).child("image")
+                                        .setValue(downloadUriString)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
 
-
-                            dbRef.child("Users").child(currentUserID).child("image")
-                                    .setValue(downloadUrl)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                            if(task.isSuccessful())
-                                            {
-                                                Toast.makeText(Settingsactivity.this,"Profile Image Saved Successfully",Toast.LENGTH_SHORT);
-                                                loadingbar.dismiss();
+                                                if(task.isSuccessful())
+                                                {
+                                                    Toast.makeText(Settingsactivity.this,"Profile Image Saved Successfully",Toast.LENGTH_SHORT);
+                                                    loadingbar.dismiss();
+                                                }
+                                                else
+                                                {
+                                                    String message = task.getException().toString();
+                                                    Toast.makeText(Settingsactivity.this,"Error:"+message,Toast.LENGTH_SHORT);
+                                                    loadingbar.dismiss();
+                                                }
                                             }
-                                            else
-                                            {
-                                                String message = task.getException().toString();
-                                                Toast.makeText(Settingsactivity.this,"Error:"+message,Toast.LENGTH_SHORT);
-                                                loadingbar.dismiss();
-                                            }
-                                        }
-                                    });
-                        }
-                        else
-                        {
-                            String message = task.getException().toString();
-                            Toast.makeText(Settingsactivity.this, "Error :"+message, Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
-                        }
+                                        });
+
+                            }
+                        });
+
                     }
                 });
+
             }
         }
     }
@@ -157,6 +165,9 @@ public class Settingsactivity extends AppCompatActivity {
 
         String Username = username.getText().toString();
         String mobilenum =phnnum.getText().toString();
+
+
+
 
         if(TextUtils.isEmpty(Username))
         {
@@ -209,7 +220,11 @@ public class Settingsactivity extends AppCompatActivity {
 
                             username.setText(Retusername);
                             phnnum.setText(Retphnnum);
-                            Picasso.get().load(image).into(userProfileImage);
+
+                            Glide.with(Settingsactivity.this).load(image).override(100)
+                                    .into(userProfileImage);
+
+
 
 
                         }

@@ -1,6 +1,7 @@
 package com.example.mywhatsapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -62,6 +64,11 @@ public class Searchcontact extends AppCompatActivity {
                 holder.username.setText(model.getName());
                 holder.phnnum.setText(model.getPhnnum());
 
+                String Image = model.getImage();
+
+                Glide.with(Searchcontact.this).load(Image).override(100).dontAnimate()
+                        .into(holder.profileImage);
+
             }
 
             @NonNull
@@ -88,7 +95,9 @@ public class Searchcontact extends AppCompatActivity {
             username = itemView.findViewById(R.id.User_profile_id);
             phnnum = itemView.findViewById(R.id.user_phnnum);
 
-            profileImage = itemView.findViewById(R.id.profile_image);
+            profileImage= itemView.findViewById(R.id.contact_profile_image);
+
+
 
 
         }
