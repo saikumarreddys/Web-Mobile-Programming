@@ -74,10 +74,23 @@ public class CallsFragment extends Fragment {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                CallClass callResult = dataSnapshot.getValue(CallClass.class);
+                System.out.println(callResult);
 
                 Set<String> set = new HashSet<>();
                 Iterator iter = dataSnapshot.getChildren().iterator();
                 while(iter.hasNext()) {
+
+//                    String value = ((DataSnapshot) iter.next()).getValue().toString();
+
+//                    if(dataSnapshot.exists() && ((dataSnapshot.hasChild("name"))))
+//                    {
+//                        String calledPerson = dataSnapshot.child("name").getValue().toString();
+//                        String callingDate = dataSnapshot.child("date").getValue().toString();
+//                        String callTime = dataSnapshot.child("time").getValue().toString();
+//                        String CallType = dataSnapshot.child("callType").getValue().toString();
+//
+//                    }
 
                     set.add(((DataSnapshot) iter.next()).getKey());
                 }

@@ -82,6 +82,27 @@ public class ChatsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    for(DataSnapshot childItem : snapshot.getChildren()) {
+
+                        Iterator iter = childItem.getChildren().iterator();
+                        while(iter.hasNext())
+                        {
+                            String chatName = (String) ((DataSnapshot)iter.next()).getValue();
+                            System.out.println(chatName);
+                            String chatDate = (String) ((DataSnapshot)iter.next()).getValue();
+                            System.out.println(chatDate);
+                            String chatMessage = (String) ((DataSnapshot)iter.next()).getValue();
+                            System.out.println(chatMessage);
+                            String chatTime = (String) ((DataSnapshot)iter.next()).getValue();
+                            System.out.println(chatTime);
+
+                        }
+
+                    }
+                }
+
                 Set<String> set = new HashSet<>();
                 Iterator iter = dataSnapshot.getChildren().iterator();
                 while(iter.hasNext()) {
